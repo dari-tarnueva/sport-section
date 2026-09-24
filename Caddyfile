@@ -1,0 +1,8 @@
+192.168.115.100:443 {
+    tls internal
+    reverse_proxy web:8000
+}
+
+http://192.168.115.100 {
+    redir https://192.168.115.100{uri}
+}
