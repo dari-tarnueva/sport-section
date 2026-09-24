@@ -1,0 +1,24 @@
+{% extends 'sport_app/base.html' %}
+{% block title %}{{ trainer.full_name }}{% endblock %}
+
+{% block content %}
+<a href="{% url 'sport_app:trainer_list' %}" class="back-link">← Назад к списку</a>
+<div class="detail-card">
+    <h1>{{ trainer.full_name }}</h1>
+    <p><strong>Специализация:</strong> {{ trainer.specialization }}</p>
+
+    <h3>Секции тренера</h3>
+    <ul class="list">
+        {% for s in trainer.sections.all %}
+            <li><a href="{% url 'sport_app:section_detail' s.pk %}">{{ s.name }}</a></li>
+        {% empty %}
+            <li class="muted">Нет секций</li>
+        {% endfor %}
+    </ul>
+
+    <div class="card-actions">
+        <a href="{% url 'sport_app:trainer_update' trainer.pk %}" class="btn btn-primary">Изменить</a>
+        <a href="{% url 'sport_app:trainer_delete' trainer.pk %}" class="btn btn-danger">Удалить</a>
+    </div>
+</div>
+{% endblock %}

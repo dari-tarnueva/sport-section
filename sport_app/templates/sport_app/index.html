@@ -1,0 +1,30 @@
+{% extends 'sport_app/base.html' %}
+{% block title %}Главная — Олимп{% endblock %}
+
+{% block content %}
+<h1>Добро пожаловать в «Олимп»</h1>
+<p class="lead">Управление спортивной секцией: тренеры, секции, спортсмены, расписание и абонементы.</p>
+
+<div class="stats-grid">
+    <a href="{% url 'sport_app:trainer_list' %}" class="stat-card">
+        <div class="stat-number">{{ trainers_count }}</div>
+        <div class="stat-label">Тренеры</div>
+    </a>
+    <a href="{% url 'sport_app:section_list' %}" class="stat-card">
+        <div class="stat-number">{{ sections_count }}</div>
+        <div class="stat-label">Секции</div>
+    </a>
+    <a href="{% url 'sport_app:athlete_list' %}" class="stat-card">
+        <div class="stat-number">{{ athletes_count }}</div>
+        <div class="stat-label">Спортсмены</div>
+    </a>
+    <a href="{% url 'sport_app:schedule_list' %}" class="stat-card">
+        <div class="stat-number">{{ schedules_count }}</div>
+        <div class="stat-label">Занятия</div>
+    </a>
+    <a href="{% url 'sport_app:subscription_list' %}" class="stat-card">
+        <div class="stat-number">{{ subscriptions_count }}</div>
+        <div class="stat-label">Абонементы</div>
+    </a>
+</div>
+{% endblock %}

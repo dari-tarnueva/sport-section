@@ -1,0 +1,26 @@
+{% extends 'sport_app/base.html' %}
+{% block title %}Секции{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Секции</h1>
+    <a href="{% url 'sport_app:section_create' %}" class="btn btn-primary">+ Добавить</a>
+</div>
+
+<div class="card-grid">
+    {% for s in sections %}
+    <div class="card">
+        <h3>{{ s.name }}</h3>
+        <p class="muted">Тренер: {{ s.trainer.full_name }}</p>
+        <p>{{ s.description|truncatewords:15 }}</p>
+        <div class="card-actions">
+            <a href="{% url 'sport_app:section_detail' s.pk %}" class="btn btn-sm">Подробнее</a>
+            <a href="{% url 'sport_app:section_update' s.pk %}" class="btn btn-sm">Изменить</a>
+            <a href="{% url 'sport_app:section_delete' s.pk %}" class="btn btn-sm btn-danger">Удалить</a>
+        </div>
+    </div>
+    {% empty %}
+    <p>Секций пока нет.</p>
+    {% endfor %}
+</div>
+{% endblock %}

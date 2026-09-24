@@ -1,0 +1,25 @@
+{% extends 'sport_app/base.html' %}
+{% block title %}Тренеры{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Тренеры</h1>
+    <a href="{% url 'sport_app:trainer_create' %}" class="btn btn-primary">+ Добавить</a>
+</div>
+
+<div class="card-grid">
+    {% for t in trainers %}
+    <div class="card">
+        <h3>{{ t.full_name }}</h3>
+        <p class="muted">{{ t.specialization }}</p>
+        <div class="card-actions">
+            <a href="{% url 'sport_app:trainer_detail' t.pk %}" class="btn btn-sm">Подробнее</a>
+            <a href="{% url 'sport_app:trainer_update' t.pk %}" class="btn btn-sm">Изменить</a>
+            <a href="{% url 'sport_app:trainer_delete' t.pk %}" class="btn btn-sm btn-danger">Удалить</a>
+        </div>
+    </div>
+    {% empty %}
+    <p>Тренеров пока нет.</p>
+    {% endfor %}
+</div>
+{% endblock %}

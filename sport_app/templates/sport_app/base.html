@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Спортивная секция «Олимп»{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'sport_app/css/style.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="{% url 'sport_app:index' %}" class="logo">🏅 Олимп</a>
+            <nav class="nav">
+                <a href="{% url 'sport_app:trainer_list' %}">Тренеры</a>
+                <a href="{% url 'sport_app:section_list' %}">Секции</a>
+                <a href="{% url 'sport_app:athlete_list' %}">Спортсмены</a>
+                <a href="{% url 'sport_app:schedule_list' %}">Расписание</a>
+                <a href="{% url 'sport_app:subscription_list' %}">Абонементы</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            © {% now "Y" %} Спортивная секция «Олимп»
+        </div>
+    </footer>
+</body>
+</html>

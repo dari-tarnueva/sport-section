@@ -1,0 +1,26 @@
+{% extends 'sport_app/base.html' %}
+{% block title %}Абонементы{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Абонементы</h1>
+    <a href="{% url 'sport_app:subscription_create' %}" class="btn btn-primary">+ Добавить</a>
+</div>
+
+<div class="card-grid">
+    {% for sub in subscriptions %}
+    <div class="card">
+        <h3>{{ sub.athlete.full_name }}</h3>
+        <p><strong>{{ sub.type }}</strong></p>
+        <p class="muted">{{ sub.start_date }} — {{ sub.end_date }}</p>
+        <div class="card-actions">
+            <a href="{% url 'sport_app:subscription_detail' sub.pk %}" class="btn btn-sm">Подробнее</a>
+            <a href="{% url 'sport_app:subscription_update' sub.pk %}" class="btn btn-sm">Изменить</a>
+            <a href="{% url 'sport_app:subscription_delete' sub.pk %}" class="btn btn-sm btn-danger">Удалить</a>
+        </div>
+    </div>
+    {% empty %}
+    <p>Абонементов пока нет.</p>
+    {% endfor %}
+</div>
+{% endblock %}

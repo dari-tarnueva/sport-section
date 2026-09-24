@@ -1,0 +1,26 @@
+{% extends 'sport_app/base.html' %}
+{% block title %}Расписание{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Расписание занятий</h1>
+    <a href="{% url 'sport_app:schedule_create' %}" class="btn btn-primary">+ Добавить</a>
+</div>
+
+<div class="card-grid">
+    {% for s in schedules %}
+    <div class="card">
+        <h3>{{ s.section.name }}</h3>
+        <p class="muted">{{ s.date }} в {{ s.time }}</p>
+        <p class="muted">📍 {{ s.location }}</p>
+        <div class="card-actions">
+            <a href="{% url 'sport_app:schedule_detail' s.pk %}" class="btn btn-sm">Подробнее</a>
+            <a href="{% url 'sport_app:schedule_update' s.pk %}" class="btn btn-sm">Изменить</a>
+            <a href="{% url 'sport_app:schedule_delete' s.pk %}" class="btn btn-sm btn-danger">Удалить</a>
+        </div>
+    </div>
+    {% empty %}
+    <p>Занятий пока нет.</p>
+    {% endfor %}
+</div>
+{% endblock %}
